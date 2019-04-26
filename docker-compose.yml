@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ruby:
+    build: ./
+    volumes:
+      - ./:/root
+      - $HOME/.aws:/root/.aws:ro
