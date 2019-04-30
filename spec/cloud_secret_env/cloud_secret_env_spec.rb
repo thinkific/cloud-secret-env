@@ -41,7 +41,7 @@ RSpec.describe CloudSecretEnv do
           :config,
           secret_ids: ['derp'],
           validate!: true,
-          verbose: true,
+          verbose: false,
           override: false
         )
       end
