@@ -16,16 +16,22 @@ RSpec.describe CloudSecretEnv do
     let!(:provider) { double(:provider, fetch_secrets!: secrets) }
     let!(:config) { nil }
 
+    subject { described_class.run }
+
     before do
       described_class.instance_variable_set(:@config, config)
       allow(described_class).to receive(:provider).and_return(provider)
     end
 
     context 'config is invalid' do
-      let!(:config) { double(:config) }
+      let!(:config) { described_class::Config.new }
 
       before do
         described_class.instance_variable_set(:@config, config)
+      end
+
+      it 'should throw an error' do
+        expect { subject }.to raise_exception(described_class::Config::ConfigValidationError)
       end
     end
 
@@ -34,7 +40,8 @@ RSpec.describe CloudSecretEnv do
         double(
           :config,
           secret_ids: ['derp'],
-          validate!: true, verbose: true,
+          validate!: true,
+          verbose: true,
           override: false
         )
       end
