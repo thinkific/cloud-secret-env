@@ -2,7 +2,15 @@
 
 RSpec.describe CloudSecretEnv do
   it 'has a version number' do
-    expect(described_class::VERSION).not_to be nil
+    expect(described_class::VERSION).not_to be_nil
+  end
+
+  it 'has an AWS_PROVIDER' do
+    expect(described_class::AWS_PROVIDER).to eq(:aws)
+  end
+
+  it 'has PROVIDERS' do
+    expect(described_class::PROVIDERS).not_to be_empty
   end
 
   describe '#configure' do
