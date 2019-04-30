@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'cloud_secret_env'
   spec.version       = CloudSecretEnv::VERSION
   spec.authors       = ['Kevin Blues']
-  spec.licence       = 'MIT'
+  spec.license       = 'MIT'
   spec.email         = ['kevin@thinkific.com']
   spec.summary       = 'Uses external secret APIs to set env'
   spec.description   = <<-DESCRIPTION
