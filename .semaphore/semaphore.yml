@@ -14,7 +14,7 @@ blocks:
       jobs:
       - name: RSpec
         commands:
-          - rake
+          - bundle exec rake
       - name: Lint code
         commands:
-          - rubocop
+          - bundle exec rubocop
