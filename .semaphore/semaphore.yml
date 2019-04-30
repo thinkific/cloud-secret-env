@@ -17,5 +17,4 @@ blocks:
           - rake
       - name: Lint code
         commands:
-          # - checkout
-          - echo "make lint"
+          - rubocop
