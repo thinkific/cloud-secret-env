@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CloudSecretEnv::Config do
+RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
   let(:config) { described_class.new }
 
   describe '#provider=' do
@@ -47,7 +47,7 @@ RSpec.describe CloudSecretEnv::Config do
     end
   end
 
-  describe '#validate!' do
+  describe '#validate!' do # rubocop:disable Metrics/BlockLength
     subject { config.validate! }
 
     context 'provider is blank' do

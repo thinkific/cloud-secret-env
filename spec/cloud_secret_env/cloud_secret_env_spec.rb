@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CloudSecretEnv do
+RSpec.describe CloudSecretEnv do # rubocop:disable Metrics/BlockLength
   it 'has a version number' do
     expect(described_class::VERSION).not_to be_nil
   end
@@ -21,7 +21,7 @@ RSpec.describe CloudSecretEnv do
     end
   end
 
-  describe '#run' do
+  describe '#run' do # rubocop:disable Metrics/BlockLength
     let!(:secrets) { { 'EXAMPLE_SECRET' => 'true' } }
     let!(:provider) { double(:provider, fetch_secrets!: secrets) }
     let!(:config) { nil }
