@@ -74,17 +74,44 @@ Run tests
 bundle exec rake
 ```
 
-### Break down into end to end tests
+### Unit Tests
 
-Explain what these tests test and why
+Unit tests are implemented using [RSpec](https://rspec.info/) and we do our best to follow [Better Specs](http://www.betterspecs.org/)
 
+```ruby
+RSpec.describe CloudSecretEnv::Config do
+  # use efficient variable assignments
+  let(:config) { described_class.new }
+  ...
+  # describe the method being tested
+  describe '#validate!' do
+    subject { config.validate! }
+
+    # use contexts for representing state
+    context 'provider is blank' do
+      # and it blocks for expectations
+      it 'should fail validation' do
+        # use described_class when referring to parent class
+        expect { subject }.to raise_error described_class::ConfigValidationError
+      end
+      ...
+    end
+
+    context 'region is blank' do
+      it 'should fail validation' do
+        expect { subject }.to raise_error described_class::ConfigValidationError
+      end
+      ...
+    end
+  end
+end
 ```
-Give an example
-```
 
-### And coding style tests
+### Code style tests
 
-This project is implemented using Rubocop within your editor of choice. For some of the more popular editors:
+This project is linted using Rubocop. It's run in SemaphoreCI and can also be run in your editor of choice. 
+
+Links for popular editors:
 - [VS Code](https://github.com/misogi/vscode-ruby-rubocop)
 - [Atom](https://atom.io/packages/linter-rubocop)
 - [Sublime Text](https://github.com/pderichs/sublime_rubocop)
