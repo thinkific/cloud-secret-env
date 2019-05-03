@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['kevin@thinkific.com']
   spec.summary       = 'Uses external secret APIs to set env'
   spec.description   = <<-DESCRIPTION
-    'Configure and run on application startup to populate your program\'s env from a secrets provider'
+    Configure and run on application startup to populate your program\'s env from a secrets provider
   DESCRIPTION
   spec.homepage      = 'https://github.com/thinkific/cloud-secret-env'
   spec.files         = Dir['lib/**/*.rb']

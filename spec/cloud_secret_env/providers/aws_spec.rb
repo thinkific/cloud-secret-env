@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe CloudSecretEnv::Providers::AWS do # rubocop:disable Metrics/BlockLength
-  describe '#fetch_secrets!' do # rubocop:disable Metrics/BlockLength
+RSpec.describe CloudSecretEnv::Providers::AWS do
+  describe '#fetch_secrets!' do
     let!(:provider) do
       CloudSecretEnv::Providers::AWS.new(
         access_key: nil,

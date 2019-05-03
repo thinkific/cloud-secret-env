@@ -26,7 +26,7 @@ module CloudSecretEnv
       @secret_ids = secret_string.split(',') if secret_string
     end
 
-    def validate! # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+    def validate! # rubocop:disable Metrics/CyclomaticComplexity
       errors = []
       errors << 'Provider cannot be blank' if provider.nil? || provider.empty?
       errors << 'Region cannot be blank' if region.nil? || region.empty?

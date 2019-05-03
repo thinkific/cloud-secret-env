@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
+RSpec.describe CloudSecretEnv::Config do
   let(:config) { described_class.new }
 
   describe '#provider=' do
@@ -47,8 +47,14 @@ RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
     end
   end
 
-  describe '#validate!' do # rubocop:disable Metrics/BlockLength
+  describe '#validate!' do
     subject { config.validate! }
+
+    def error_message
+      subject
+    rescue described_class::ConfigValidationError => cve
+      cve.message
+    end
 
     context 'provider is blank' do
       it 'should fail validation' do
@@ -56,11 +62,7 @@ RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
       end
 
       it 'should notify failure due to Provider' do
-        begin
-          subject
-        rescue described_class::ConfigValidationError => cve
-          expect(cve.message).to include('Provider cannot be blank')
-        end
+        expect(error_message).to include('Provider cannot be blank')
       end
     end
 
@@ -70,11 +72,7 @@ RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
       end
 
       it 'should notify failure due to Region' do
-        begin
-          subject
-        rescue described_class::ConfigValidationError => cve
-          expect(cve.message).to include('Region cannot be blank')
-        end
+        expect(error_message).to include('Region cannot be blank')
       end
     end
 
@@ -84,11 +82,7 @@ RSpec.describe CloudSecretEnv::Config do # rubocop:disable Metrics/BlockLength
       end
 
       it 'should notify failure due to Secret IDs' do
-        begin
-          subject
-        rescue described_class::ConfigValidationError => cve
-          expect(cve.message).to include('Secret IDs cannot be empty')
-        end
+        expect(error_message).to include('Secret IDs cannot be empty')
       end
     end
 

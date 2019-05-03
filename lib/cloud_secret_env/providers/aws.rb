@@ -47,7 +47,7 @@ module CloudSecretEnv
 
       private
 
-      def initialize_secrets_manager! # rubocop:disable Metrics/AbcSize
+      def initialize_secrets_manager!
         options = { region: region }
         options[:profile] = profile_name if profile_name
         keys_exist = access_key && !access_key.empty? && secret_key && !secret_key.empty?
