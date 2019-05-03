@@ -9,7 +9,7 @@ Current supported providers:
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Prerequisites for Development
 
 Required:
 - Ruby 2.0+
@@ -24,9 +24,7 @@ Optional:
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
+### Usage
 
 Bundler install
 ```bash
@@ -37,10 +35,13 @@ In your program
 ```ruby
 require 'cloud_secret_env'
 
+# You need to configure before running.
+# => Typical configs use provider, region and secret_ids
+# => A few optional arguments are override and verbose
 CloudSecretEnv.configure do |cse|
-  cse.provider = 'aws'
-  cse.region = 'us-east-1'
-  cse.secret_ids = 'secret1,secret2'
+  cse.provider = 'aws' # which cloud provider to use
+  cse.region = 'us-east-1' # which region for the cloud provider (if applicable)
+  cse.secret_ids = 'secret1,secret2' # comma-separated list of secrets to retrieve
 end
 
 CloudSecretEnv.run
@@ -89,6 +90,7 @@ RSpec.describe CloudSecretEnv::Config do
         # use described_class when referring to parent class
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
+
       ...
     end
 
@@ -96,6 +98,7 @@ RSpec.describe CloudSecretEnv::Config do
       it 'fails validation' do
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
+
       ...
     end
   end
@@ -133,7 +136,7 @@ CloudSecretEnv.configure do |cse|
   cse.provider = 'aws'
   cse.region = 'us-east-1'
   cse.secret_ids = 'secret1,secret2'
-  cse.verbose = true
+  cse.verbose = true # output secrets hash to console
   # override is false by default
 end
 CloudSecretEnv.run
