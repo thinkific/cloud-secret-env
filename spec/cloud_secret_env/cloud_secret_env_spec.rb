@@ -40,7 +40,7 @@ RSpec.describe CloudSecretEnv do
         described_class.instance_variable_set(:@config, config)
       end
 
-      it 'should throw an error' do
+      it 'throws an error' do
         expect { subject }.to raise_exception(described_class::Config::ConfigValidationError)
       end
     end
@@ -56,7 +56,7 @@ RSpec.describe CloudSecretEnv do
         )
       end
 
-      it 'should set the env' do
+      it 'successfully updates the env' do
         described_class.run
         env_val = secrets['EXAMPLE_SECRET']
         expect(ENV['EXAMPLE_SECRET']).to eq(env_val)

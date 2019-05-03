@@ -29,7 +29,7 @@ RSpec.describe CloudSecretEnv::Providers::AWS do
           .and_raise(Aws::Errors::MissingCredentialsError)
       end
 
-      it 'should raise SecretAuthError' do
+      it 'raises SecretAuthError' do
         expect { subject }.to raise_error described_class::SecretAuthError
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe CloudSecretEnv::Providers::AWS do
           )
       end
 
-      it 'should raise SecretNotFoundError' do
+      it 'raises SecretNotFoundError' do
         expect { subject }.to raise_error described_class::SecretNotFoundError
       end
     end

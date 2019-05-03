@@ -90,7 +90,7 @@ RSpec.describe CloudSecretEnv::Config do
     # use contexts for representing state
     context 'provider is blank' do
       # and it blocks for expectations
-      it 'should fail validation' do
+      it 'fails validation' do
         # use described_class when referring to parent class
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
@@ -98,7 +98,7 @@ RSpec.describe CloudSecretEnv::Config do
     end
 
     context 'region is blank' do
-      it 'should fail validation' do
+      it 'fails validation' do
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
       ...

@@ -5,7 +5,7 @@ RSpec.describe CloudSecretEnv::Config do
 
   describe '#provider=' do
     context 'provider is aws' do
-      it 'should not raise a ProviderNotFound error' do
+      it 'does not raise a ProviderNotFound error' do
         expect do
           config.provider = CloudSecretEnv::AWS_PROVIDER
         end.not_to raise_error
@@ -13,7 +13,7 @@ RSpec.describe CloudSecretEnv::Config do
     end
 
     context 'provider does not exist' do
-      it 'should raise a ProviderNotFound error' do
+      it 'raises a ProviderNotFound error' do
         expect do
           config.provider = 'derp'
         end.to raise_error CloudSecretEnv::ProviderNotFound
@@ -27,21 +27,21 @@ RSpec.describe CloudSecretEnv::Config do
 
     context 'secret_ids is a string with no commas' do
       let(:secret_id_string) { 'derp' }
-      it 'should set secret_ids to an array containing the string' do
+      it 'sets secret_ids to an array containing the string' do
         expect(subject).to eq([secret_id_string])
       end
     end
 
     context 'secret_ids is a comma-separated string' do
       let(:secret_id_string) { 'derp,derp2' }
-      it 'should set secret_ids to an array with all pieces' do
+      it 'sets secret_ids to an array with all pieces' do
         expect(subject).to eq(%w[derp derp2])
       end
     end
 
     context 'secret_ids is empty' do
       let(:secret_id_string) { '' }
-      it 'should set secret_ids to an empty array' do
+      it 'sets secret_ids to an empty array' do
         expect(subject).to eq([])
       end
     end
@@ -57,31 +57,31 @@ RSpec.describe CloudSecretEnv::Config do
     end
 
     context 'provider is blank' do
-      it 'should fail validation' do
+      it 'fails validation' do
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
 
-      it 'should notify failure due to Provider' do
+      it 'notifies failure due to Provider' do
         expect(error_message).to include('Provider cannot be blank')
       end
     end
 
     context 'region is blank' do
-      it 'should fail validation' do
+      it 'fails validation' do
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
 
-      it 'should notify failure due to Region' do
+      it 'notifies failure due to Region' do
         expect(error_message).to include('Region cannot be blank')
       end
     end
 
     context 'secret_ids is empty' do
-      it 'should fail validation' do
+      it 'fails validation' do
         expect { subject }.to raise_error described_class::ConfigValidationError
       end
 
-      it 'should notify failure due to Secret IDs' do
+      it 'notifies failure due to Secret IDs' do
         expect(error_message).to include('Secret IDs cannot be empty')
       end
     end
@@ -95,7 +95,7 @@ RSpec.describe CloudSecretEnv::Config do
         cfg
       end
 
-      it 'should pass validation' do
+      it 'passes validation' do
         expect { subject }.not_to raise_error
       end
     end
