@@ -33,11 +33,6 @@ Bundler install
 gem 'cloud_secret_env'
 ```
 
-Gem install
-```bash
-gem install cloud_secret_env
-```
-
 In your program
 ```ruby
 require 'cloud_secret_env'
