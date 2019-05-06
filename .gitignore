@@ -9,6 +9,7 @@
 /.ash_history
 /.bash_history
 /.local/
+/.cache/
 
 # rspec failure tracking
 .rspec_status

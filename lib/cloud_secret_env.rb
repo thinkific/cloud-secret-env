@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 require 'cloud_secret_env/providers'
 require 'cloud_secret_env/config'
 

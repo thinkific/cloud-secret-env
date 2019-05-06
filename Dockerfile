@@ -1,5 +1,5 @@
 FROM ruby:2.6-alpine
-MAINTAINER Kevin Blues <kbluescode@gmail.com>
+MAINTAINER Kevin Blues <kevin@thinkific.com>
 
 ARG DEPS="\
 bash \

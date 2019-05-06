@@ -1,56 +1,20 @@
 version: v1.0
-name: First pipeline example
+name: CloudSecretEnv Test Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: "Build"
+  - name: "tests"
     task:
-      env_vars:
-        - name: APP_ENV
-          value: prod
-      jobs:
-      - name: Docker build
+      prologue:
         commands:
-          - checkout
-          - ls -1
-          - echo $APP_ENV
-          - echo "Docker build..."
-          - echo "done"
-  - name: "Smoke tests"
-    task:
-      jobs:
-      - name: Smoke
-        commands:
-          - checkout
-          - echo "make smoke"
-  - name: "Unit tests"
-    task:
+        - checkout
+        - bin/setup
       jobs:
       - name: RSpec
         commands:
-          - checkout
-          - echo "make rspec"
+          - bundle exec rake
       - name: Lint code
         commands:
-          - checkout
-          - echo "make lint"
-      - name: Check security
-        commands:
-          - checkout
-          - echo "make security"
-  - name: "Integration tests"
-    task:
-      jobs:
-      - name: Cucumber
-        commands:
-          - checkout
-          - echo "make cucumber"
-  - name: "Push Image"
-    task:
-      jobs:
-      - name: Push
-        commands:
-          - checkout
-          - echo "make docker.push"
+          - bundle exec rubocop
