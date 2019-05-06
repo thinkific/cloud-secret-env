@@ -28,7 +28,7 @@ Optional:
 
 Bundler install
 ```bash
-gem 'cloud_secret_env'
+gem 'cloud_secret_env', git: 'https://github.com/thinkific/cloud-secret-env'
 ```
 
 In your program
