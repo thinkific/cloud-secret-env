@@ -3,6 +3,7 @@ MAINTAINER Kevin Blues <kevin@thinkific.com>
 
 ARG DEPS="\
 bash \
+build-base \
 dumb-init \
 git \
 "
