@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CloudSecretEnv::Config do
   let(:config) { described_class.new }
 
@@ -52,8 +53,8 @@ RSpec.describe CloudSecretEnv::Config do
 
     def error_message
       subject
-    rescue described_class::ConfigValidationError => cve
-      cve.message
+    rescue described_class::ConfigValidationError => e
+      e.message
     end
 
     context 'provider is blank' do
@@ -101,3 +102,4 @@ RSpec.describe CloudSecretEnv::Config do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

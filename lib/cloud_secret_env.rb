@@ -25,26 +25,26 @@ module CloudSecretEnv
 
     private
 
-    def provider
-      case @config.provider
-      when AWS_PROVIDER
-        Providers::AWS.new(
-          access_key: @config.access_key,
-          secret_key: @config.secret_key,
-          region: @config.region,
-          profile_name: @config.profile_name,
-          secret_ids: @config.secret_ids
-        )
+      def provider
+        case @config.provider
+        when AWS_PROVIDER
+          Providers::AWS.new(
+            access_key: @config.access_key,
+            secret_key: @config.secret_key,
+            region: @config.region,
+            profile_name: @config.profile_name,
+            secret_ids: @config.secret_ids
+          )
+        end
       end
-    end
 
-    def push_env!(secrets)
-      block = if @config.override
-                ->(k, v) { ENV[k] = v }
-              else
-                ->(k, v) { ENV[k] = v unless ENV[k] }
-              end
-      secrets.each(&block)
-    end
+      def push_env!(secrets)
+        block = if @config.override
+                  ->(k, v) { ENV[k] = v }
+                else
+                  ->(k, v) { ENV[k] = v unless ENV[k] }
+                end
+        secrets.each(&block)
+      end
   end
 end
