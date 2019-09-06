@@ -19,6 +19,7 @@ module CloudSecretEnv
     def provider=(provider)
       provider = provider.to_sym
       raise ProviderNotFound, "Provider '#{provider}' not found" unless ::CloudSecretEnv::PROVIDERS.include?(provider)
+
       @provider = provider
     end
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CloudSecretEnv do
   it 'has a version number' do
     expect(described_class::VERSION).not_to be_nil
@@ -64,3 +65,4 @@ RSpec.describe CloudSecretEnv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
