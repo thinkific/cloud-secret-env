@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'aws-sdk'
+require 'aws-sdk-core'
+require 'aws-sdk-secretsmanager'
 
 module CloudSecretEnv
   module Providers

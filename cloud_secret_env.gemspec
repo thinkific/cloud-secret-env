@@ -25,5 +25,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '0.71'
-  spec.add_runtime_dependency 'aws-sdk', '~> 2'
+  spec.add_runtime_dependency 'aws-sdk-core', '~> 3'
+  spec.add_runtime_dependency 'aws-sdk-secretsmanager', '~> 1'
 end
