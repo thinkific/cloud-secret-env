@@ -42,7 +42,7 @@ module CloudSecretEnv
         block = if @config.override
                   ->(pair) { ENV[pair[0]] = pair[1] }
                 else
-                  ->(pair) { ENV[pair[0]] = pair[1] unless ENV[pair[1]] }
+                  ->(pair) { ENV[pair[0]] = pair[1] unless ENV[pair[0]] }
                 end
         secrets.each(&block)
       end
