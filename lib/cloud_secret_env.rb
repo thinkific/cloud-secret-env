@@ -40,9 +40,9 @@ module CloudSecretEnv
 
       def push_env!(secrets)
         block = if @config.override
-                  ->(k, v) { ENV[k] = v }
+                  ->(pair) { ENV[pair[0]] = pair[1] }
                 else
-                  ->(k, v) { ENV[k] = v unless ENV[k] }
+                  ->(pair) { ENV[pair[0]] = pair[1] unless ENV[pair[0]] }
                 end
         secrets.each(&block)
       end

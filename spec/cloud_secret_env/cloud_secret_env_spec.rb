@@ -23,7 +23,7 @@ RSpec.describe CloudSecretEnv do
   end
 
   describe '#run' do
-    let!(:secrets) { { 'EXAMPLE_SECRET' => 'true' } }
+    let!(:secrets) { { 'EXAMPLE_SECRET' => 'true', 'ANOTHER_EXAMPLE_SECRET' => 'test' } }
     let!(:provider) { double(:provider, fetch_secrets!: secrets) }
     let!(:config) { nil }
 
@@ -46,7 +46,7 @@ RSpec.describe CloudSecretEnv do
       end
     end
 
-    context 'config is valid' do
+    context 'config is valid with override set to false' do
       let!(:config) do
         double(
           :config,
@@ -57,10 +57,36 @@ RSpec.describe CloudSecretEnv do
         )
       end
 
-      it 'successfully updates the env' do
+      before do
+        ENV['EXAMPLE_SECRET'] = 'foo'
+      end
+
+      it 'successfully updates the env without overriding existing values' do
         described_class.run
-        env_val = secrets['EXAMPLE_SECRET']
-        expect(ENV['EXAMPLE_SECRET']).to eq(env_val)
+        expect(ENV['EXAMPLE_SECRET']).to eq('foo')
+        expect(ENV['ANOTHER_EXAMPLE_SECRET']).to eq(secrets['ANOTHER_EXAMPLE_SECRET'])
+      end
+    end
+
+    context 'config is valid with override set to true' do
+      let!(:config) do
+        double(
+          :config,
+          secret_ids: ['derp'],
+          validate!: true,
+          verbose: false,
+          override: true
+        )
+      end
+
+      before do
+        ENV['EXAMPLE_SECRET'] = 'foo'
+      end
+
+      it 'successfully updates the env and overrides existing values' do
+        described_class.run
+        expect(ENV['EXAMPLE_SECRET']).to eq(secrets['EXAMPLE_SECRET'])
+        expect(ENV['ANOTHER_EXAMPLE_SECRET']).to eq(secrets['ANOTHER_EXAMPLE_SECRET'])
       end
     end
   end
