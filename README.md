@@ -185,7 +185,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Kevin Blues** - *Initial work* - [kbluescode](https://github.com/kbluescode) on behalf of [Thinkific](https://github.com/thinkific)
+* **Kevin Blues** - Project core - [kbluescode](https://github.com/kbluescode)
+* **Hamsa Afify** - CI improvements - [hammosa](https://github.com/hammosa)
+* **Ryan Nielson** - Ruby 3.x fixes - [RyanNielson](https://github.com/RyanNielson)
 
 See also the list of [contributors](https://github.com/thinkific/cloud-secret-env/contributors) who participated in this project.
 
